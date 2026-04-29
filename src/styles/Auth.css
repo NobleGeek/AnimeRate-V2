@@ -1,0 +1,251 @@
+/* ══════════════════════════════════════════════
+   Auth: shared styles for Login & Signup pages
+   ══════════════════════════════════════════════ */
+
+/* ── page wrapper ── */
+.auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+    padding: 40px 20px;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* subtle radial glow behind the card */
+.auth-page::before {
+    content: '';
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-bg) 0%, transparent 70%);
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── brand / trade name ── */
+.trade-name {
+    z-index: 1;
+    margin-bottom: 4px;
+}
+
+.trade-name h1 {
+    font-weight: 200;
+    font-size: 42px;
+    letter-spacing: -0.72px;
+    font-style: italic;
+    margin: 0;
+}
+
+.trade-name h1 > spam {
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.auth-subtitle {
+    color: var(--text);
+    font-size: 15px;
+    margin: 0 0 24px;
+    z-index: 1;
+}
+
+/* ── card ── */
+.auth-card {
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    box-shadow: var(--shadow);
+    animation: authFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+    .auth-card {
+        background: rgba(26, 27, 35, 0.8);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+    }
+}
+
+@keyframes authFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ── form layout ── */
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ── input group ── */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-h);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.input-group input {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text-h);
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input::placeholder {
+    color: var(--text);
+    opacity: 0.5;
+}
+
+.input-group input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+    .input-group input {
+        background: rgba(255, 255, 255, 0.04);
+    }
+}
+
+/* ── primary submit button ── */
+.auth-submit {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    margin-top: 4px;
+}
+
+.auth-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(170, 59, 255, 0.35);
+}
+
+.auth-submit:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ── divider ("or") ── */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+/* ── social / OAuth button ── */
+.auth-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 11px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text-h);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+}
+
+.auth-social:hover {
+    background: var(--social-bg);
+    border-color: var(--accent-border);
+}
+
+.auth-social:active {
+    transform: scale(0.98);
+}
+
+.auth-social img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* ── footer link ── */
+.auth-footer {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text);
+    margin: 0;
+}
+
+.auth-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.15s ease;
+}
+
+.auth-footer a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* ── responsive ── */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 28px 20px;
+    }
+
+    .trade-name h1 {
+        font-size: 34px;
+    }
+}

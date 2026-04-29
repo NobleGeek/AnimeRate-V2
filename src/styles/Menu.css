@@ -1,0 +1,148 @@
+/* ── Menu: theme-aware dropdown ── */
+
+.user-menu {
+    --menu-bg-light: rgba(255, 255, 255, 0.92);
+    --menu-bg-dark: rgba(26, 27, 35, 0.92);
+    --menu-hover-light: rgba(170, 59, 255, 0.08);
+    --menu-hover-dark: rgba(192, 132, 252, 0.12);
+    --menu-danger: #ef4444;
+    --menu-danger-bg: rgba(239, 68, 68, 0.08);
+
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    min-width: 220px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--menu-bg-light);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04);
+    z-index: 1000;
+    overflow: hidden;
+    animation: menuSlideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+    .user-menu {
+        background: var(--menu-bg-dark);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.35),
+            0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* ── entrance animation ── */
+@keyframes menuSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ── list reset ── */
+.user-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* ── divider ── */
+.menu-divider {
+    height: 1px;
+    margin: 4px 12px;
+    background: var(--border);
+    pointer-events: none;
+}
+
+/* ── shared link / button styles ── */
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text-h);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.12s ease;
+    box-sizing: border-box;
+}
+
+.menu-link:hover {
+    background: var(--menu-hover-light);
+    color: var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+    .menu-link:hover {
+        background: var(--menu-hover-dark);
+    }
+}
+
+.menu-link:active {
+    transform: scale(0.98);
+}
+
+/* ── danger variant ── */
+.menu-link--danger {
+    color: var(--menu-danger);
+}
+
+.menu-link--danger:hover {
+    background: var(--menu-danger-bg);
+    color: var(--menu-danger);
+}
+
+/* ── icon container ── */
+.menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    transition: opacity 0.18s ease;
+}
+
+.menu-link:hover .menu-icon {
+    opacity: 1;
+}
+
+.menu-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ── label ── */
+.menu-label {
+    flex: 1;
+    white-space: nowrap;
+}
